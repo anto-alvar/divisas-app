@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { Subject, Observable, of } from 'rxjs'
 import { UserNameModel } from '../my-data/models/user-name.model';
+import { mockUser } from '../my-data/models/mock-user';
+
 
 
 
@@ -9,19 +12,25 @@ import { UserNameModel } from '../my-data/models/user-name.model';
 export class LoginService {
 
   private users: UserNameModel[];
+  public loggedUser = mockUser;
   
   constructor() {
     this.users = [];
   }
 
-  getUsers() {
+  getUsers(): UserNameModel[] {
     return this.users;
+  }
+
+  getUserById(id: number): UserNameModel {
+    const user = this.users.find( (wallet) => wallet.id === id);
+    return user;
   }
 
   doLogin() {
 
     setTimeout( () => {
-      this.createTestUser();
+      this.createMockUser();
       this.users[0].isLoggedIn = true;
     }, 2000)
   }
@@ -45,9 +54,10 @@ export class LoginService {
       this.users.push(user);
   }
 
-  createTestUser() {
-    this.createNewUser(
-      1, "pedro.alvarez@gmail.com", "Pedro", "Álvarez", "pdrAlv", "alv67!", 555555555, "XXXXXXXX", "España", "Hombre", new Date(1984, 7, 8), "C/Test, Madrid");
-      console.log(this.users);
+  createMockUser() {
+    localStorage.setItem("user1", JSON.stringify(mockUser));
+    this.users.push(mockUser);
+    console.log(this.users);
   }
+
 }

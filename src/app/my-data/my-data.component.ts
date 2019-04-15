@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { UserNameModel} from './models/user-name.model';
 
 
@@ -9,6 +9,7 @@ import { UserNameModel} from './models/user-name.model';
 })
 export class MyDataComponent implements OnInit {
 
+  @Input()
   private user: UserNameModel;
 
 
@@ -18,6 +19,16 @@ export class MyDataComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("user1"));
+    console.log(this.user);
   }
 
+  isUserLogged() {
+    if (this.user === null || this.user === undefined ) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  } 
 }

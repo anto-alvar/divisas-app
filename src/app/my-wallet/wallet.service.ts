@@ -33,8 +33,6 @@ export class WalletService {
      else {
        throw new Error("Ya existe una cartera de esa divisa");
      }
-     
-    
    }
 
    removeWalletById(id: number) {

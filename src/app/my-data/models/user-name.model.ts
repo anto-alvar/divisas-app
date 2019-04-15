@@ -89,7 +89,7 @@ export class UserNameModel {
         address: string,
     ) {
 
-        this.account = new AccountModel(1, "222");
+        this.account = new AccountModel(1435, "222");
 
         this.id = id;
         this.email = email;
@@ -105,5 +105,5 @@ export class UserNameModel {
         this.address = address;
         this.isLoggedIn = false;
     }
-    
+
 }
