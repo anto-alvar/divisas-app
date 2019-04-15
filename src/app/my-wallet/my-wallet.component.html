@@ -1,7 +1,7 @@
-<p>
-  PAGINA DE MONEDEROS
-</p>
+<div *ngIf="isUserLogged()" class ="misDatos">
 
 <button (click)=createTestWallet()>Create Test Wallet</button>
 <button (click)=add500ToTestWallet()>Add 500 to Test Wallet</button>
 <button (click)=withdraw100FromTestWallet()>Withdraw 100 From Test Wallet</button>
+
+</div>
