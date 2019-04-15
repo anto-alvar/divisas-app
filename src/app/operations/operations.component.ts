@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserNameModel } from '../my-data/models/user-name.model';
 
 @Component({
   selector: 'app-operations',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperationsComponent implements OnInit {
 
+  private user: UserNameModel;
+
   constructor() { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("user1"));
+    console.log(this.user);
   }
+
+  isUserLogged() {
+    if (this.user === null || this.user === undefined ) {
+      return false;
+    }
+    else {
+      return true;
+    }
+  } 
+
 
 }
