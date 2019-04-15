@@ -1,3 +1,8 @@
-<p>
-  PAGINA PARA INICIAR SESION
-</p>
+
+<div *ngIf= "isLogged();else notLogged">
+<p>Hola, {{ loggedUser.name }}</p>
+</div>  
+
+<ng-template #notLogged>
+  <button (click)="loginService.doLogin()">Inicia Sesion</button>
+</ng-template>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserNameModel} from './models/user-name.model';
+
 
 @Component({
   selector: 'app-my-data',
@@ -7,20 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MyDataComponent implements OnInit {
 
-  nombre: string;
-  apellidos: string;
-  nTelefono: number;
-  nCuenta: string;
+  private user: UserNameModel;
 
 
 
 
   constructor() {
-    this.nombre = "Isidro";
-    this.apellidos = "García López";
-    this.nTelefono = 697770415;
-    this.nCuenta = "ES 0000078453J"
-
    }
 
   ngOnInit() {
