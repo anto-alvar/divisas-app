@@ -23,8 +23,13 @@ export class MyWalletComponent implements OnInit {
     console.log(this.walletService.getWallets());
   }
 
-  add100ToTestWallet() {
+  add500ToTestWallet() {
     this.walletService.addMoneyToWalletById(1, 500);
+    console.log(this.walletService.getWallets());
+  }
+
+  withdraw100FromTestWallet() {
+    this.walletService.subtractMoneyFromWalletById(1, 100);
     console.log(this.walletService.getWallets());
   }
 
