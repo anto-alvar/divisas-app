@@ -11,7 +11,6 @@ import { BehaviorSubject } from 'rxjs';
 export class LoginComponent implements OnInit {
 
   private loggedUser: BehaviorSubject<UserNameModel>;
-  
 
   constructor(
     private loginService: LoginService
@@ -23,16 +22,22 @@ export class LoginComponent implements OnInit {
   }
 
   isLogged(): boolean {
-    if(this.loggedUser == undefined) {
+    if (this.loggedUser === undefined) {
       return false;
-    }
-    else {
+    } else {
       return this.loggedUser.getValue().isLoggedIn;
     }
   }
 
   loginMockUser() {
-    this.loginService.doLogin();
+    this.loginService.doLogin(1);
   }
 
+  loginMockUser2() {
+    this.loginService.doLogin(2);
+  }
+
+  logoutMockUsers() {
+    this.loginService.deleteMockUsers();
+  }
 }

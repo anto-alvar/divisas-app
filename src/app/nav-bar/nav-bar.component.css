@@ -45,13 +45,17 @@
   
   /* Change the color of links on hover */
   .topnav a:hover {
-    color: rgb(163, 51, 51);
+    color: rgb(163, 51, 51); 
   }
   
   /* Add a color to the active/current link */
   .topnav a.active {
-    background-color: rgb(212, 93, 23);
+    background-color: rgb(170, 51, 51);
     color: white;
+  }
+
+  .topnav a.active:hover {
+    text-decoration: underline;
   }
 
   .sticky {

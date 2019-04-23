@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, of } from 'rxjs'
+import { Subject, Observable, of } from 'rxjs';
 import { UserNameModel } from '../my-data/models/user-name.model';
 import { mockUser } from '../my-data/models/mock-user';
+import { mockUser2 } from '../my-data/models/mock-user2';
 
 
 
@@ -12,8 +13,7 @@ import { mockUser } from '../my-data/models/mock-user';
 export class LoginService {
 
   private users: UserNameModel[];
-  public loggedUser = mockUser;
-  
+  public loggedUser;
   constructor() {
     this.users = [];
   }
@@ -23,16 +23,27 @@ export class LoginService {
   }
 
   getUserById(id: number): UserNameModel {
-    const user = this.users.find( (wallet) => wallet.id === id);
+    const user = this.users.find((wallet) => wallet.id === id);
     return user;
   }
 
-  doLogin() {
+  doLogin(userId: number) {
 
-    setTimeout( () => {
-      this.createMockUser();
-      this.users[0].isLoggedIn = true;
-    }, 2000)
+    switch (userId) {
+      case 1: {
+        this.createMockUser();
+        break;
+      }
+      case 2: {
+        this.createMockUser2();
+        break;
+      }
+      default: {
+        this.createMockUser();
+        break;
+      }
+    }
+    this.users[0].isLoggedIn = true;
   }
 
   createNewUser(
@@ -45,19 +56,31 @@ export class LoginService {
     phoneNumber: number,
     dni: string,
     country: string,
-    gender: "Hombre" | "Mujer" | "Otro",
+    gender: 'Hombre' | 'Mujer' | 'Otro',
     birthDate: Date,
     address: string
   ) {
-      const user = new UserNameModel(
-        id, email, name, surname, userName, password, phoneNumber, dni, country, gender, birthDate, address);
-      this.users.push(user);
+    const user = new UserNameModel(
+      id, email, name, surname, userName, password, phoneNumber, dni, country, gender, birthDate, address);
+    this.users.push(user);
   }
 
   createMockUser() {
-    localStorage.setItem("user1", JSON.stringify(mockUser));
+    this.loggedUser = mockUser;
+    localStorage.setItem('user1', JSON.stringify(mockUser));
     this.users.push(mockUser);
     console.log(this.users);
+  }
+
+  createMockUser2() {
+    this.loggedUser = mockUser2;
+    localStorage.setItem('user1', JSON.stringify(mockUser2));
+    this.users.push(mockUser2);
+    console.log(this.users);
+  }
+
+  deleteMockUsers() {
+    localStorage.clear();
   }
 
 }
